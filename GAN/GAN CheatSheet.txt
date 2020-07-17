@@ -1,0 +1,27 @@
+#generator
+#receives noise
+#outputs data(often images)
+
+#Discriminator 
+#Take a dataset consisting of real images from the real data set and fake images from the generator
+#Attempt to classify the real vs fake images (always binary classification)
+
+#phase 1 : Train Discriminator
+#Real images are combined with fake images from generator 
+#Discriminator trains to distinguish real from fake (with backpropagation only on discriminator weights)
+
+#phase 2 - Train Generator
+#produces fake images with generator
+#feed only these fake images to the generator with all labels set as real
+#this causes generator to attempt to produce images the discriminator believes to be real
+#because we feed in fake images all with labeled 1 we olny perform backpropagation on the generator weights in this step
+
+#generator never sees the real images
+#it generates convincing images only based off gradients flowing back through the discriminator
+
+#difficulties with GANs:
+#training resources-Strong GPUs to have reasonable time to train
+#mode collapse(when the generator finds the array(image) that satisifes and fools the discriminator it may not improve, so the array will be in the same shape only values will slightly change)-Deep Convolutional GANs may solve this problem
+#Instability - difficult to tell the real accuracy of the model as all the images generated are fake and even though they may seem to have good result they may in fact be not convincing for humans
+
+#hyperparameters - number of layers, neurons, activation functions learning rates etc.
